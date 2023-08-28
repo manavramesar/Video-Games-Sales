@@ -40,6 +40,6 @@ FROM (
     UNION ALL
     SELECT 'Rest Of World Sales', Other_Sales FROM video_game_sales.sales
 ) AS a
-GROUP BY Region;
+GROUP BY 1;
 
 
