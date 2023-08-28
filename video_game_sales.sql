@@ -26,3 +26,20 @@ FROM video_game_sales.sales
 GROUP BY 1
 ORDER BY 2 DESC;
 
+-- Sales Per region --
+
+SELECT
+    Region,
+    ROUND(SUM(Sales),2) AS TotalSales
+FROM (
+    SELECT 'NA Sales' AS Region, NA_Sales AS Sales FROM video_game_sales.sales
+    UNION ALL
+    SELECT 'EU Sales', EU_Sales FROM video_game_sales.sales
+    UNION ALL
+    SELECT 'JP Sales', JP_Sales FROM video_game_sales.sales
+    UNION ALL
+    SELECT 'Rest Of World Sales', Other_Sales FROM video_game_sales.sales
+) AS a
+GROUP BY Region;
+
+
